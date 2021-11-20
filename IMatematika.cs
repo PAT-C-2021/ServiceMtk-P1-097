@@ -11,22 +11,58 @@ namespace ServiceMtk_P1_20190140097
     [ServiceContract]
     public interface IMatematika
     {
+        //menambahkan faultContract
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
         /*output*/
         int Tambah(int a, int b); //method
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
         /*output*/
+        int Kurang(int a, int b); //method
+
+        [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
+        /*output*/
+        int Kali(int a, int b); //method
+
+        [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
+        /*output*/
+        int Bagi(int a, int b); //method
+
+        [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
+        /*output*/
+        Koordinat TKoordinat(Koordinat a, Koordinat b); //method
+/*
+        [OperationContract]
+        *//*output*//*
+        int Tambah(int a, int b); //method
+        [OperationContract]
+        *//*output*//*
         int Kurang(int a, int b); //input
         [OperationContract]
-        /*output*/
+        *//*output*//*
         int Kali(int a, int b); 
         [OperationContract]
-        /*output*/
+        *//*output*//*
         int Bagi(int a, int b);
         [OperationContract]
-        Koordinat TKoordinat(Koordinat a, Koordinat b); //obj dari class
+        Koordinat TKoordinat(Koordinat a, Koordinat b); //obj dari class*/
     }
+    
     [DataContract]
+    //menambahkan class
+    class MathFault
+    {
+        [DataMember]
+        public string Kode { get; set; }
+        [DataMember]
+        public string Pesan { get; set; }
+    }
+
     public class Koordinat
     {
         private int _x, _y; //attribut
@@ -54,5 +90,4 @@ namespace ServiceMtk_P1_20190140097
             }
         }
     }
-
 }
